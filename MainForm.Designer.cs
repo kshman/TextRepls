@@ -252,6 +252,9 @@ namespace TextRepls
 			// 
 			// tabControl1
 			// 
+			this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.tabControl1.Controls.Add(this.tabPage1);
 			this.tabControl1.Controls.Add(this.tabPage2);
 			this.tabControl1.Location = new System.Drawing.Point(12, 226);
@@ -289,7 +292,8 @@ namespace TextRepls
 			// 
 			// btnBatchRead
 			// 
-			this.btnBatchRead.Location = new System.Drawing.Point(560, 160);
+			this.btnBatchRead.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnBatchRead.Location = new System.Drawing.Point(560, 71);
 			this.btnBatchRead.Name = "btnBatchRead";
 			this.btnBatchRead.Size = new System.Drawing.Size(66, 46);
 			this.btnBatchRead.TabIndex = 13;
@@ -299,7 +303,8 @@ namespace TextRepls
 			// 
 			// btnBatchSave
 			// 
-			this.btnBatchSave.Location = new System.Drawing.Point(560, 108);
+			this.btnBatchSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnBatchSave.Location = new System.Drawing.Point(560, 19);
 			this.btnBatchSave.Name = "btnBatchSave";
 			this.btnBatchSave.Size = new System.Drawing.Size(66, 46);
 			this.btnBatchSave.TabIndex = 12;
@@ -309,6 +314,7 @@ namespace TextRepls
 			// 
 			// btnBatchRun
 			// 
+			this.btnBatchRun.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.btnBatchRun.Location = new System.Drawing.Point(560, 304);
 			this.btnBatchRun.Name = "btnBatchRun";
 			this.btnBatchRun.Size = new System.Drawing.Size(66, 87);
@@ -329,6 +335,9 @@ namespace TextRepls
 			// lstConvFiles
 			// 
 			this.lstConvFiles.AllowDrop = true;
+			this.lstConvFiles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.lstConvFiles.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader3,
             this.columnHeader4});
