@@ -1,0 +1,32 @@
+﻿name〓텍스트 내용 여러개 바꾸기
+# MainForm 폼
+btnadd〓더하기
+lbladdorg〓원래
+lbladdnew〓바꿈
+btnreplsave〓바꿀꺼 쓰기
+btnreplread〓바꿀꺼 읽기
+lstreplsclmorg〓찾을 내용
+lstreplsclmnew〓바꿀 내용
+tabtextconv〓문장 변환
+tabbatchconv〓파일 일괄 변환
+btngoreplace〓바꾸기
+lblbatchfilelist〓파일 목록
+lstconvfilesclmfilename〓파일 이름
+lstconvfilesclmpath〓경로
+btnbatchsave〓목록 쓰기
+btnbatchopen〓목록 읽기
+btnbatchrun〓바꾸기
+# MainForm 코드
+warningclose〓변경된 내용이 있습니다, 닫으시겠습니까?
+needconfirm〓확인해주세요
+warningreplread〓변경된 내용이 있습니다, 계속 읽으시겠습니까?
+dlgopentitle〓바꿀 문자열이 들어 있는 파일 열기
+dlgfilefilter〓문서 파일(*.txt)|*.txt
+dlgdefaultext〓txt
+dlgsavetitle〓바꿀 문자열을 보관할 파일 선택
+errorsave〓파일을 만들 수 없습니다!
+neederror〓문제가 있어요!
+errorinvalidequal〓문자중에 '〓'는 사용할 수 없습니다
+dlgbatchsavetitle〓일괄 처리 파일 목록을 보관할 파일 선택
+dlgbatchopentitle〓일괄 처리 파일 목록이 들어 있는 파일 열기
+warningbeforebatch〓{0}개 파일을 작업합니다!!!

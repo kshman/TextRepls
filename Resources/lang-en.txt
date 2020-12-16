@@ -1,0 +1,32 @@
+﻿name〓Text Repls
+# MainForm 폼
+btnadd〓Add
+lbladdorg〓Org
+lbladdnew〓Chg
+btnreplsave〓Save List
+btnreplread〓OpenList
+lstreplsclmorg〓From
+lstreplsclmnew〓To
+tabtextconv〓Text conv
+tabbatchconv〓Batch conv
+btngoreplace〓Conv
+lblbatchfilelist〓File list
+lstconvfilesclmfilename〓File name
+lstconvfilesclmpath〓Directory
+btnbatchsave〓Save List
+btnbatchopen〓Open List
+btnbatchrun〓Conv
+# MainForm 코드
+warningclose〓Changes found, continue to close?
+needconfirm〓Confirm
+warningreplread〓Changes found, continue to open?
+dlgopentitle〓Open replace text list file
+dlgfilefilter〓Text file(*.txt)|*.txt
+dlgdefaultext〓txt
+dlgsavetitle〓Save replace text list file
+errorsave〓Cannot create file!
+neederror〓Something wrong!
+errorinvalidequal〓Unicode character '〓' is not able to use
+dlgbatchsavetitle〓Save batch file list
+dlgbatchopentitle〓Open batch file list
+warningbeforebatch〓Continue to work, totla {0} file(s)!!!
