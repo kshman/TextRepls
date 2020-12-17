@@ -4,7 +4,8 @@ btnadd〓Add
 lbladdorg〓Org
 lbladdnew〓Chg
 btnreplsave〓Save List
-btnreplread〓OpenList
+btnreplread〓Open List
+btnreplclear〓Clear
 lstreplsclmorg〓From
 lstreplsclmnew〓To
 tabtextconv〓Text conv
@@ -16,6 +17,7 @@ lstconvfilesclmpath〓Directory
 btnbatchsave〓Save List
 btnbatchopen〓Open List
 btnbatchrun〓Conv
+lstreplsctxdel〓Remove selected item(s) : {0}
 # MainForm 코드
 warningclose〓Changes found, continue to close?
 needconfirm〓Confirm
@@ -30,3 +32,6 @@ errorinvalidequal〓Unicode character '〓' is not able to use
 dlgbatchsavetitle〓Save batch file list
 dlgbatchopentitle〓Open batch file list
 warningbeforebatch〓Continue to work, totla {0} file(s)!!!
+warningbeforeclear〓Remove all item(s)! Are you sure?
+copy〓Copy
+paste〓Paste

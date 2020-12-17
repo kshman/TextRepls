@@ -5,6 +5,7 @@ lbladdorg〓원래
 lbladdnew〓바꿈
 btnreplsave〓바꿀꺼 쓰기
 btnreplread〓바꿀꺼 읽기
+btnreplclear〓모두지움
 lstreplsclmorg〓찾을 내용
 lstreplsclmnew〓바꿀 내용
 tabtextconv〓문장 변환
@@ -16,6 +17,7 @@ lstconvfilesclmpath〓경로
 btnbatchsave〓목록 쓰기
 btnbatchopen〓목록 읽기
 btnbatchrun〓바꾸기
+lstreplsctxdel〓선택한 {0}개 지우기
 # MainForm 코드
 warningclose〓변경된 내용이 있습니다, 닫으시겠습니까?
 needconfirm〓확인해주세요
@@ -30,3 +32,6 @@ errorinvalidequal〓문자중에 '〓'는 사용할 수 없습니다
 dlgbatchsavetitle〓일괄 처리 파일 목록을 보관할 파일 선택
 dlgbatchopentitle〓일괄 처리 파일 목록이 들어 있는 파일 열기
 warningbeforebatch〓{0}개 파일을 작업합니다!!!
+warningbeforeclear〓모두 지웁니다! 괜찮을까요!
+copy〓복사
+paste〓붙여넣기

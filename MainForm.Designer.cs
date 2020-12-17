@@ -39,12 +39,13 @@ namespace TextRepls
 			this.txtAddNew = new System.Windows.Forms.TextBox();
 			this.btnAddAdd = new System.Windows.Forms.Button();
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.btnReplClear = new System.Windows.Forms.Button();
 			this.lstRepls = new System.Windows.Forms.ListView();
 			this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.btnReplSave = new System.Windows.Forms.Button();
 			this.ctxReplList = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.tsiReplListRemove = new System.Windows.Forms.ToolStripMenuItem();
-			this.btnReplSave = new System.Windows.Forms.Button();
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.rtxSrc = new System.Windows.Forms.RichTextBox();
 			this.rtxDst = new System.Windows.Forms.RichTextBox();
@@ -72,9 +73,9 @@ namespace TextRepls
 			// btnReplRead
 			// 
 			this.btnReplRead.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnReplRead.Location = new System.Drawing.Point(520, 3);
+			this.btnReplRead.Location = new System.Drawing.Point(575, 3);
 			this.btnReplRead.Name = "btnReplRead";
-			this.btnReplRead.Size = new System.Drawing.Size(90, 46);
+			this.btnReplRead.Size = new System.Drawing.Size(60, 46);
 			this.btnReplRead.TabIndex = 0;
 			this.btnReplRead.Text = "바꿀꺼\r\n읽기";
 			this.btnReplRead.UseVisualStyleBackColor = true;
@@ -146,6 +147,7 @@ namespace TextRepls
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.btnReplClear);
 			this.panel1.Controls.Add(this.lstRepls);
 			this.panel1.Controls.Add(this.btnReplSave);
 			this.panel1.Controls.Add(this.btnAddAdd);
@@ -159,6 +161,17 @@ namespace TextRepls
 			this.panel1.Size = new System.Drawing.Size(640, 208);
 			this.panel1.TabIndex = 7;
 			// 
+			// btnReplClear
+			// 
+			this.btnReplClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnReplClear.Location = new System.Drawing.Point(430, 3);
+			this.btnReplClear.Name = "btnReplClear";
+			this.btnReplClear.Size = new System.Drawing.Size(60, 46);
+			this.btnReplClear.TabIndex = 11;
+			this.btnReplClear.Text = "지우기";
+			this.btnReplClear.UseVisualStyleBackColor = true;
+			this.btnReplClear.Click += new System.EventHandler(this.BtnReplClear_Click);
+			// 
 			// lstRepls
 			// 
 			this.lstRepls.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -166,7 +179,6 @@ namespace TextRepls
 			this.lstRepls.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2});
-			this.lstRepls.ContextMenuStrip = this.ctxReplList;
 			this.lstRepls.FullRowSelect = true;
 			this.lstRepls.GridLines = true;
 			this.lstRepls.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
@@ -177,6 +189,8 @@ namespace TextRepls
 			this.lstRepls.TabIndex = 10;
 			this.lstRepls.UseCompatibleStateImageBehavior = false;
 			this.lstRepls.View = System.Windows.Forms.View.Details;
+			this.lstRepls.MouseClick += new System.Windows.Forms.MouseEventHandler(this.LstRepls_MouseClick);
+			this.lstRepls.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lstRepls_MouseDoubleClick);
 			// 
 			// columnHeader1
 			// 
@@ -187,6 +201,17 @@ namespace TextRepls
 			// 
 			this.columnHeader2.Text = "바꿀 내용";
 			this.columnHeader2.Width = 300;
+			// 
+			// btnReplSave
+			// 
+			this.btnReplSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnReplSave.Location = new System.Drawing.Point(509, 3);
+			this.btnReplSave.Name = "btnReplSave";
+			this.btnReplSave.Size = new System.Drawing.Size(60, 46);
+			this.btnReplSave.TabIndex = 9;
+			this.btnReplSave.Text = "바꿀꺼\r\n쓰기";
+			this.btnReplSave.UseVisualStyleBackColor = true;
+			this.btnReplSave.Click += new System.EventHandler(this.BtnReplSave_Click);
 			// 
 			// ctxReplList
 			// 
@@ -201,17 +226,6 @@ namespace TextRepls
 			this.tsiReplListRemove.Size = new System.Drawing.Size(110, 22);
 			this.tsiReplListRemove.Text = "지우기";
 			this.tsiReplListRemove.Click += new System.EventHandler(this.TsiReplListRemove_Click);
-			// 
-			// btnReplSave
-			// 
-			this.btnReplSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnReplSave.Location = new System.Drawing.Point(424, 3);
-			this.btnReplSave.Name = "btnReplSave";
-			this.btnReplSave.Size = new System.Drawing.Size(90, 46);
-			this.btnReplSave.TabIndex = 9;
-			this.btnReplSave.Text = "바꿀꺼\r\n쓰기";
-			this.btnReplSave.UseVisualStyleBackColor = true;
-			this.btnReplSave.Click += new System.EventHandler(this.BtnReplSave_Click);
 			// 
 			// splitContainer1
 			// 
@@ -240,6 +254,7 @@ namespace TextRepls
 			this.rtxSrc.Size = new System.Drawing.Size(278, 385);
 			this.rtxSrc.TabIndex = 0;
 			this.rtxSrc.Text = "";
+			this.rtxSrc.MouseDown += new System.Windows.Forms.MouseEventHandler(this.RtxSrc_MouseDown);
 			// 
 			// rtxDst
 			// 
@@ -249,6 +264,7 @@ namespace TextRepls
 			this.rtxDst.Size = new System.Drawing.Size(281, 385);
 			this.rtxDst.TabIndex = 0;
 			this.rtxDst.Text = "";
+			this.rtxDst.MouseDown += new System.Windows.Forms.MouseEventHandler(this.RtxDst_MouseDown);
 			// 
 			// tabControl1
 			// 
@@ -351,6 +367,7 @@ namespace TextRepls
 			this.lstConvFiles.View = System.Windows.Forms.View.Details;
 			this.lstConvFiles.DragDrop += new System.Windows.Forms.DragEventHandler(this.LstConvFiles_DragDrop);
 			this.lstConvFiles.DragEnter += new System.Windows.Forms.DragEventHandler(this.LstConvFiles_DragEnter);
+			this.lstConvFiles.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lstConvFiles_MouseClick);
 			// 
 			// columnHeader3
 			// 
@@ -418,6 +435,7 @@ namespace TextRepls
 		private System.Windows.Forms.ListView lstConvFiles;
 		private System.Windows.Forms.ColumnHeader columnHeader3;
 		private System.Windows.Forms.ColumnHeader columnHeader4;
+		private System.Windows.Forms.Button btnReplClear;
 	}
 }
 

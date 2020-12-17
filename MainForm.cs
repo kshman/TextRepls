@@ -53,7 +53,7 @@ namespace TextRepls
 
 			// 언어 처리
 #if DEBUG
-			LineDb ldb = new LineDb(Properties.Resources.lang_ko) ;
+			LineDb ldb = new LineDb(Properties.Resources.lang_ko);
 #else
 			LineDb ldb = Thread.CurrentThread.CurrentUICulture == CultureInfo.GetCultureInfo("ko-KR") ?
 				new LineDb(Properties.Resources.lang_ko) :
@@ -81,6 +81,7 @@ namespace TextRepls
 			btnBatchSave.Text = ldb["btnbatchsave"];
 			btnBatchRead.Text = ldb["btnbatchopen"];
 			btnBatchRun.Text = ldb["btnbatchrun"];
+			btnReplClear.Text = ldb["btnreplclear"];
 
 			LangDb = ldb;
 		}
@@ -276,6 +277,23 @@ namespace TextRepls
 			catch { }
 		}
 
+		//
+		private ListViewItem FindListViewItem(ListView lv, int subindex, string key, out int index, int startindex = 0)
+		{
+			for (int i = startindex; i < lv.Items.Count; i++)
+			{
+				var li = lv.Items[i];
+				if (li.SubItems[subindex].Text.Equals(key))
+				{
+					index = i;
+					return li;
+				}
+			}
+
+			index = -1;
+			return null;
+		}
+
 		// 추가
 		private void AddReplListItem()
 		{
@@ -289,11 +307,19 @@ namespace TextRepls
 			else
 			{
 				if (_rpls.ContainsKey(so))
+				{
 					_rpls.Remove(so);
+					_rpls.Add(so, sn);
 
-				_rpls.Add(so, sn);
-
-				UpdateReplList();
+					var li = FindListViewItem(lstRepls, 0, so, out int w);
+					if (w >= 0)
+						li.SubItems[1].Text = sn;
+				}
+				else
+				{
+					_rpls.Add(so, sn);
+					UpdateReplList();
+				}
 
 				//
 				if (!Modified)
@@ -493,6 +519,149 @@ namespace TextRepls
 					File.WriteAllText(s, txt, Encoding.UTF8);
 				}
 				catch { }
+			}
+		}
+
+		private void lstRepls_MouseDoubleClick(object sender, MouseEventArgs e)
+		{
+			if (e.Button == MouseButtons.Left && lstRepls.SelectedItems.Count == 1)
+			{
+				string key = lstRepls.SelectedItems[0].Text;
+				if (_rpls.TryGetValue(key, out string value))
+				{
+					txtAddOrg.Text = key;
+					txtAddNew.Text = value;
+					txtAddNew.Focus();
+				}
+			}
+		}
+
+		private void LstRepls_MouseClick(object sender, MouseEventArgs e)
+		{
+			if (e.Button == MouseButtons.Left)
+			{
+				// 아이템 선택
+			}
+			else if (e.Button == MouseButtons.Right)
+			{
+				// 메뉴
+				if (lstRepls.SelectedItems.Count > 0)
+				{
+					ContextMenu m = new ContextMenu();
+					MenuItem i;
+
+					i = new MenuItem()
+					{
+						Text = string.Format(LangDb["lstreplsctxdel"], lstRepls.SelectedItems.Count),
+					};
+					i.Click += (sd, es) =>
+					  {
+						  var prevcnt = _rpls.Count;
+
+						  foreach (ListViewItem n in lstRepls.SelectedItems)
+						  {
+							  var s = n.Text;
+							  _rpls.Remove(s);
+						  }
+
+						  UpdateReplList();
+
+						  if (_rpls.Count != prevcnt)
+						  {
+							  Modified = true;
+							  btnReplSave.BackColor = Color.PaleGreen;
+						  }
+					  };
+					m.MenuItems.Add(i);
+
+					m.Show(lstRepls, e.Location);
+				}
+			}
+		}
+
+		private void BtnReplClear_Click(object sender, EventArgs e)
+		{
+			if (_rpls.Count == 0)
+				return;
+
+			var r = MessageBox.Show(this, LangDb["warningbeforeclear"], LangDb["needconfirm"], MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+
+			if (r != DialogResult.Yes)
+				return;
+
+			_rpls.Clear();
+			UpdateReplList();
+
+			Modified = true;
+			btnReplSave.BackColor = Color.PaleGreen;
+		}
+
+		private void RtxSrc_MouseDown(object sender, MouseEventArgs e)
+		{
+			if (e.Button == MouseButtons.Right)
+			{
+				ContextMenu m = new ContextMenu();
+				MenuItem i;
+
+				i = new MenuItem() { Text = LangDb["copy"] };
+				i.Enabled = rtxSrc.TextLength > 0;
+				i.Click += (ss, es) =>
+				{
+					Clipboard.SetText(rtxSrc.Text);
+				};
+				m.MenuItems.Add(i);
+
+				i = new MenuItem() { Text = LangDb["paste"] };
+				i.Enabled = Clipboard.ContainsText();
+				i.Click += (ss, es) =>
+				{
+					rtxSrc.Text = Clipboard.GetText();
+				};
+				m.MenuItems.Add(i);
+
+				m.Show(rtxSrc, e.Location);
+			}
+		}
+
+		private void RtxDst_MouseDown(object sender, MouseEventArgs e)
+		{
+			if (e.Button == MouseButtons.Right)
+			{
+				ContextMenu m = new ContextMenu();
+				MenuItem i;
+
+				i = new MenuItem() { Text = LangDb["copy"] };
+				i.Enabled = rtxDst.TextLength > 0;
+				i.Click += (ss, es) =>
+				{
+					Clipboard.SetText(rtxDst.Text);
+				};
+				m.MenuItems.Add(i);
+
+				m.Show(rtxDst, e.Location);
+			}
+		}
+
+		private void lstConvFiles_MouseClick(object sender, MouseEventArgs e)
+		{
+			if (e.Button == MouseButtons.Right && lstConvFiles.SelectedItems.Count > 0)
+			{
+				ContextMenu m = new ContextMenu();
+				MenuItem i;
+
+				i = new MenuItem()
+				{
+					Text = string.Format(LangDb["lstreplsctxdel"], lstConvFiles.SelectedItems.Count),
+				};
+				i.Click += (sd, es) =>
+				{
+					int cnt = lstConvFiles.SelectedItems.Count;
+					for (int u = cnt - 1; u >= 0; u--)
+						lstConvFiles.Items.Remove(lstConvFiles.SelectedItems[u]);
+				};
+				m.MenuItems.Add(i);
+
+				m.Show(lstConvFiles, e.Location);
 			}
 		}
 	}
